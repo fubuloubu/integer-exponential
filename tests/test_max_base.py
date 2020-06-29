@@ -7,6 +7,7 @@ from int_exp import max_base
 @pytest.mark.parametrize("b", range(-1, 257))
 @pytest.mark.parametrize("signed", [True, False])
 @pytest.mark.parametrize("bits", range(8, 257, 8))
+@pytest.mark.timeout(1)  # Ensure this computes fast in all cases
 def test_max_base(b, signed, bits):
     typ = f"{'u' if signed else ''}int{bits}"
     if b > bits - int(signed):
