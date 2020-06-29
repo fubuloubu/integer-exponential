@@ -18,11 +18,11 @@ def exp_uint256(a: uint256, b: uint256) -> uint256:
 
     # 1/8
     if n % 2 == 0:
-        x *= x
+        x *= x  # dev: SafeMath Check
         n /= 2
     else:
-        y *= x
-        x *= x
+        y *= x  # dev: SafeMath Check
+        x *= x  # dev: SafeMath Check
         n -= 1
         n /= 2
 
@@ -31,11 +31,11 @@ def exp_uint256(a: uint256, b: uint256) -> uint256:
         return x * y
 
     if n % 2 == 0:
-        x *= x
+        x *= x  # dev: SafeMath Check
         n /= 2
     else:
-        y *= x
-        x *= x
+        y *= x  # dev: SafeMath Check
+        x *= x  # dev: SafeMath Check
         n -= 1
         n /= 2
 
@@ -44,11 +44,11 @@ def exp_uint256(a: uint256, b: uint256) -> uint256:
         return x * y
 
     if n % 2 == 0:
-        x *= x
+        x *= x  # dev: SafeMath Check
         n /= 2
     else:
-        y *= x
-        x *= x
+        y *= x  # dev: SafeMath Check
+        x *= x  # dev: SafeMath Check
         n -= 1
         n /= 2
 
@@ -57,24 +57,23 @@ def exp_uint256(a: uint256, b: uint256) -> uint256:
         return x * y
 
     if n % 2 == 0:
-        x *= x
+        x *= x  # dev: SafeMath Check
         n /= 2
     else:
-        y *= x
-        x *= x
+        y *= x  # dev: SafeMath Check
+        x *= x  # dev: SafeMath Check
         n -= 1
         n /= 2
 
     # 5/8
     if n <= 1:
         return x * y
-
     if n % 2 == 0:
-        x *= x
+        x *= x  # dev: SafeMath Check
         n /= 2
     else:
-        y *= x
-        x *= x
+        y *= x  # dev: SafeMath Check
+        x *= x  # dev: SafeMath Check
         n -= 1
         n /= 2
 
@@ -83,11 +82,11 @@ def exp_uint256(a: uint256, b: uint256) -> uint256:
         return x * y
 
     if n % 2 == 0:
-        x *= x
+        x *= x  # dev: SafeMath Check
         n /= 2
     else:
-        y *= x
-        x *= x
+        y *= x  # dev: SafeMath Check
+        x *= x  # dev: SafeMath Check
         n -= 1
         n /= 2
 
@@ -96,11 +95,11 @@ def exp_uint256(a: uint256, b: uint256) -> uint256:
         return x * y
 
     if n % 2 == 0:
-        x *= x
+        x *= x  # dev: SafeMath Check
         n /= 2
     else:
-        y *= x
-        x *= x
+        y *= x  # dev: SafeMath Check
+        x *= x  # dev: SafeMath Check
         n -= 1
         n /= 2
 
@@ -109,17 +108,17 @@ def exp_uint256(a: uint256, b: uint256) -> uint256:
         return x * y
 
     if n % 2 == 0:
-        x *= x
+        x *= x  # dev: SafeMath Check
         n /= 2
     else:
-        y *= x
-        x *= x
+        y *= x  # dev: SafeMath Check
+        x *= x  # dev: SafeMath Check
         n -= 1
         n /= 2
 
-    assert n <= 1, UNREACHABLE  # Should never hit this
+    assert n <= 1, UNREACHABLE  # dev: exceeded expected number of iterations
 
-    return x * y
+    return x * y  # dev: SafeMath Check
 
 
 @public
@@ -146,11 +145,11 @@ def exp_int128(a: int128, b: int128) -> int128:
 
     # 1/7
     if n % 2 == 0:
-        x *= x
+        x *= x  # dev: SafeMath Check
         n /= 2
     else:
-        y *= x
-        x *= x
+        y *= x  # dev: SafeMath Check
+        x *= x  # dev: SafeMath Check
         n -= 1
         n /= 2
 
@@ -159,11 +158,11 @@ def exp_int128(a: int128, b: int128) -> int128:
         return x * y
 
     if n % 2 == 0:
-        x *= x
+        x *= x  # dev: SafeMath Check
         n /= 2
     else:
-        y *= x
-        x *= x
+        y *= x  # dev: SafeMath Check
+        x *= x  # dev: SafeMath Check
         n -= 1
         n /= 2
 
@@ -172,11 +171,11 @@ def exp_int128(a: int128, b: int128) -> int128:
         return x * y
 
     if n % 2 == 0:
-        x *= x
+        x *= x  # dev: SafeMath Check
         n /= 2
     else:
-        y *= x
-        x *= x
+        y *= x  # dev: SafeMath Check
+        x *= x  # dev: SafeMath Check
         n -= 1
         n /= 2
 
@@ -185,11 +184,11 @@ def exp_int128(a: int128, b: int128) -> int128:
         return x * y
 
     if n % 2 == 0:
-        x *= x
+        x *= x  # dev: SafeMath Check
         n /= 2
     else:
-        y *= x
-        x *= x
+        y *= x  # dev: SafeMath Check
+        x *= x  # dev: SafeMath Check
         n -= 1
         n /= 2
 
@@ -198,11 +197,11 @@ def exp_int128(a: int128, b: int128) -> int128:
         return x * y
 
     if n % 2 == 0:
-        x *= x
+        x *= x  # dev: SafeMath Check
         n /= 2
     else:
-        y *= x
-        x *= x
+        y *= x  # dev: SafeMath Check
+        x *= x  # dev: SafeMath Check
         n -= 1
         n /= 2
 
@@ -211,11 +210,11 @@ def exp_int128(a: int128, b: int128) -> int128:
         return x * y
 
     if n % 2 == 0:
-        x *= x
+        x *= x  # dev: SafeMath Check
         n /= 2
     else:
-        y *= x
-        x *= x
+        y *= x  # dev: SafeMath Check
+        x *= x  # dev: SafeMath Check
         n -= 1
         n /= 2
 
@@ -224,14 +223,14 @@ def exp_int128(a: int128, b: int128) -> int128:
         return x * y
 
     if n % 2 == 0:
-        x *= x
+        x *= x  # dev: SafeMath Check
         n /= 2
     else:
-        y *= x
-        x *= x
+        y *= x  # dev: SafeMath Check
+        x *= x  # dev: SafeMath Check
         n -= 1
         n /= 2
 
-    assert n <= 1, UNREACHABLE  # Should never hit this
+    assert n <= 1, UNREACHABLE  # dev: exceeded expected number of iterations
 
-    return x * y
+    return x * y  # dev: SafeMath Check
