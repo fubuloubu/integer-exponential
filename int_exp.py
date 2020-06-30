@@ -17,6 +17,7 @@ def max_exp(a: int, num_bits: int, signed: bool) -> int:
     elif a < -(2 ** value_bits):
         raise ValueError("Value is too small and will always throw")
 
+    a_is_negative = a < 0
     a = abs(a)  # No longer need to know if it's signed or not
     if a == 0 or a == 1:
         raise ValueError("Exponential operation is useless!")
@@ -37,7 +38,13 @@ def max_exp(a: int, num_bits: int, signed: bool) -> int:
         b -= 1
         num_iterations += 1
         assert num_iterations < 10000
-    return b  # Exact
+    # Edge case: If a is negative and the values of a and b are such that:
+    #               (a) ** (b + 1) == -(2 ** value_bits)
+    #            we can actually squeak one more out of it because it's on the edge
+    if a_is_negative and (-a) ** (b + 1) == -(2 ** value_bits):  # NOTE: a = abs(a)
+        return b + 1
+    else:
+        return b  # Exact
 
 
 def max_base(b: int, num_bits: int, signed: bool) -> int:
