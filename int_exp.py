@@ -12,6 +12,8 @@ def max_exp(a: int, num_bits: int, signed: bool) -> int:
     value_bits = num_bits - (1 if signed else 0)
     if a >= 2 ** value_bits:
         raise ValueError("Value is too large and will always throw")
+    elif not signed and a < 0:
+        raise ValueError("Value is invalid for type")
     elif a < -(2 ** value_bits):
         raise ValueError("Value is too small and will always throw")
 
