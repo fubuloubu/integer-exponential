@@ -21,11 +21,17 @@ def max_exp(a: int, num_bits: int, signed: bool) -> int:
         return 1
     if b <= 1:
         return 1  # Value is assumed to be in range, therefore power of 1 is max
+
     # Do a bit of iteration to ensure we have the exact number
+    num_iterations = 0
     while a ** (b + 1) < 2 ** value_bits:
         b += 1
+        num_iterations += 1
+        assert num_iterations < 10000
     while a ** b >= 2 ** value_bits:
         b -= 1
+        num_iterations += 1
+        assert num_iterations < 10000
     return b  # Exact
 
 
@@ -44,12 +50,17 @@ def max_base(b: int, num_bits: int, signed: bool) -> int:
         raise ValueError("Value is too large and will always throw")
     elif b < 2:
         return 2 ** value_bits - 1  # Maximum value for type
-    else:
-        # Estimate (up to ~39 digits precision required)
-        a = math.ceil(2 ** (Decimal(value_bits) / Decimal(b)))
-        # Do a bit of iteration to ensure we have the exact number
-        while (a + 1) ** b < 2 ** value_bits:
-            a += 1
-        while a ** b >= 2 ** value_bits:
-            a -= 1
-        return a  # Exact
+
+    # Estimate (up to ~39 digits precision required)
+    a = math.ceil(2 ** (Decimal(value_bits) / Decimal(b)))
+    # Do a bit of iteration to ensure we have the exact number
+    num_iterations = 0
+    while (a + 1) ** b < 2 ** value_bits:
+        a += 1
+        num_iterations += 1
+        assert num_iterations < 10000
+    while a ** b >= 2 ** value_bits:
+        a -= 1
+        num_iterations += 1
+        assert num_iterations < 10000
+    return a  # Exact
