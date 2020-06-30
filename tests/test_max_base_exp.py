@@ -25,12 +25,37 @@ def test_max_base(b, num_bits, signed):
 
 @given(a=st.integers(min_value=-(2 ** 127), max_value=2 ** 256 - 1))
 @example(a=0)
+# 8 bits
+@example(a=-(2 ** 7))
+@example(a=-(2 ** 7) - 1)
+@example(a=2 ** 7)
+@example(a=2 ** 7 - 1)
+# 16 bits
+@example(a=-(2 ** 15))
+@example(a=-(2 ** 15) - 1)
+@example(a=2 ** 15)
+@example(a=2 ** 15 - 1)
+# 32 bits
+@example(a=-(2 ** 31))
+@example(a=-(2 ** 31) - 1)
+@example(a=2 ** 31)
+@example(a=2 ** 31 - 1)
+# 64 bits
+@example(a=-(2 ** 63))
+@example(a=-(2 ** 63) - 1)
+@example(a=2 ** 63)
+@example(a=2 ** 63 - 1)
+# 128 bits
+@example(a=-(2 ** 127))
+@example(a=-(2 ** 127) - 1)
 @example(a=2 ** 127)
 @example(a=2 ** 127 - 1)
-@settings(max_examples=1000)  # per parametrized run
+# 256 bits
+@example(a=2 ** 256)
+@example(a=2 ** 256 - 1)
+@settings(max_examples=200)  # per parametrized run
 @pytest.mark.parametrize("signed", [True, False])
 @pytest.mark.parametrize("num_bits", range(8, 257, 8))
-@pytest.mark.timeout(1)  # Ensure this computes fast in all cases
 def test_max_exp(a, num_bits, signed):
     if a < -(2 ** (num_bits - int(signed))) or a >= 2 ** (num_bits - int(signed)):
         with pytest.raises(ValueError):
