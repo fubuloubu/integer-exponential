@@ -15,10 +15,13 @@ def max_exp(a: int, num_bits: int, signed: bool) -> int:
     elif a < -(2 ** value_bits):
         raise ValueError("Value is too small and will always throw")
 
-    try:
-        b = int(Decimal(value_bits) / (Decimal(a).ln() / Decimal(2).ln()))
-    except (DivisionByZero, InvalidOperation):
-        return 1
+    a = abs(a)  # No longer need to know if it's signed or not
+    if a == 0 or a == 1:
+        raise ValueError("Exponential operation is useless!")
+
+    # NOTE: There is an edge case if `a` were left signed where the following
+    #       operation would not work (`ln(a)` is undefined if `a <= 0`)
+    b = int(Decimal(value_bits) / (Decimal(a).ln() / Decimal(2).ln()))
     if b <= 1:
         return 1  # Value is assumed to be in range, therefore power of 1 is max
 

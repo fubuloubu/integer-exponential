@@ -57,7 +57,13 @@ def test_max_base(b, num_bits, signed):
 @pytest.mark.parametrize("signed", [True, False])
 @pytest.mark.parametrize("num_bits", range(8, 257, 8))
 def test_max_exp(a, num_bits, signed):
-    if a < -(2 ** (num_bits - int(signed))) or a >= 2 ** (num_bits - int(signed)):
+    if (
+        a == 0
+        or a == 1
+        or a == -1
+        or a < -(2 ** (num_bits - int(signed)))
+        or a >= 2 ** (num_bits - int(signed))
+    ):
         with pytest.raises(ValueError):
             max_exp(a, num_bits, signed)
     else:
